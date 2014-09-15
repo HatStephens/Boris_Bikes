@@ -3,7 +3,12 @@ require './lib/bike.rb'
 
 describe DockingStation do
 	let (:the_bike) {Bike.new}
-	let (:the_station) {DockingStation.new}
+	let (:the_station) {DockingStation.new(:capacity => 20)}
+
+	def fill_station(station)
+		20.times { station.dock(the_bike)}
+	end
+
 
 	it 'should accept a bike' do
 		#the_bike = Bike.new
@@ -23,4 +28,17 @@ describe DockingStation do
 		the_station.release(the_bike)
 		expect(the_station.bike_count).to eq(0)
 	end
+
+	it 'should know when it is full' do
+		expect(the_station).to_not be_full
+		fill_station(the_station)
+		expect(the_station).to be_full
+	end
+
+	it "should not accept if it's full" do
+		fill_station(the_station)
+		expect( lambda { the_station.dock(the_bike) } ).to raise_error(RuntimeError)
+	end
+
+
 end
