@@ -45,7 +45,7 @@ describe DockingStation do
 		broken_bike.break!
 		the_station.dock(broken_bike)
 		the_station.dock(working_bike)
-		expect(the_station.bike_count).to eq(1) 
+		expect(the_station.available_bikes).to eq([working_bike])
 	end
 
 end
