@@ -11,7 +11,7 @@ class Van
 		station.broken_bikes.each do |bike|
 		dock(bike)	
 		station.release(bike)
-		end
+	end
 
 	end
 end
