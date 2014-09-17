@@ -60,7 +60,7 @@ describe BikeContainer do
 	end
 
 	it 'should not allow you to release nothing' do
-		holder.dock(bike)
+		holder.dock(bike)  
 		expect{holder.release()}.to raise_error(RuntimeError, "You have not requested to release anything.")
 	end
 
