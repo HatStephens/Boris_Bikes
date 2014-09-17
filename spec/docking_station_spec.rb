@@ -9,10 +9,6 @@ describe DockingStation do
 		expect(the_station.capacity).to eq(53)
 	end
 
-	it 'should automatically set default capacity of 10' do
-		expect(the_second_station.capacity).to eq(10)	
-	end
-
 end
 
 
