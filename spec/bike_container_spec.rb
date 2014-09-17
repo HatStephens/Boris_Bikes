@@ -59,6 +59,16 @@ describe BikeContainer do
 		expect{holder.dock(van)}.to raise_error(RuntimeError, "This is not a bike.")
 	end
 
+	it 'should not allow you to release nothing' do
+		holder.dock(bike)
+		expect{holder.release()}.to raise_error(RuntimeError, "You have not requested to release anything.")
+	end
+
+	it 'should not allow you to release a non-bike' do
+		holder.dock(bike)
+		van = Van.new
+		expect{holder.release(van)}.to raise_error(RuntimeError, "You have requested to release a non-bike.")
+	end
 end
 
 

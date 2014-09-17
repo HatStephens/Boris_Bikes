@@ -26,8 +26,10 @@ module BikeContainer
 		bike_list << the_bike	
 	end
 
-	def release(the_bike)
+	def release(the_bike = nil)
 		raise "Container is empty." if bike_list.empty?
+		raise "You have not requested to release anything." if the_bike.nil?
+		raise "You have requested to release a non-bike." if !the_bike.is_a? Bike
 		bike_list.delete(the_bike)
 	end
 
