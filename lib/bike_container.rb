@@ -19,12 +19,15 @@ module BikeContainer
 		bike_list.count
 	end
 
-	def dock(the_bike)
+	def dock(the_bike = nil)
 		raise "Container is full." if full?
+		raise "No item to dock." if the_bike.nil?
+		raise "This is not a bike." if !the_bike.is_a? Bike
 		bike_list << the_bike	
 	end
 
 	def release(the_bike)
+		raise "Container is empty." if bike_list.empty?
 		bike_list.delete(the_bike)
 	end
 

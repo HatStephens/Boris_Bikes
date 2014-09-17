@@ -1,4 +1,5 @@
 require './lib/bike_container'
+require './lib/van'
 
 class ContainerHolder; include BikeContainer; end
 
@@ -44,4 +45,23 @@ describe BikeContainer do
 		holder.dock(broken_bike)
 		expect(holder.available_bikes).to eq([available_bike])
 	end	
+
+	it 'should know when it is empty' do
+		expect{holder.release(bike)}.to raise_error(RuntimeError, "Container is empty.")		
+	end
+
+	it 'should not allow you to dock nothing' do
+		expect{holder.dock()}.to raise_error(RuntimeError, "No item to dock.")
+	end
+
+	it 'should not allow you to dock a non-bike' do
+		van = Van.new
+		expect{holder.dock(van)}.to raise_error(RuntimeError, "This is not a bike.")
+	end
+
 end
+
+
+
+
+

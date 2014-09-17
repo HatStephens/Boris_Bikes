@@ -14,11 +14,12 @@ describe Van do
 
 	it 'should collect broken bikes from a london docking station' do
 	van = Van.new
-	station = double :station
-	allow(station).to receive(:broken_bikes).and_return([:bike])
-	allow(station).to receive(:release)
+	station = double :station, release: nil
+	bike = double :bike, is_a?: true
+	allow(station).to receive(:broken_bikes).and_return([bike])
+
 	van.collect_broken_bikes(station)
-	expect(van.bike_count).to eq(1)		
+	expect(van.bike_count).to eq(1)	
 	end
 	
 end
